@@ -78,27 +78,27 @@ def main():
         message = input()
 
         try:
-            if(message=='1'):
+            if (message=='1'):
                 print("当前余额:%.2f元" % Money)
                 sleep(3)
 
-            elif(message=='2'):
+            elif (message=='2'):
                 savings(float(input("请输入存款金额: ")))
 
-            elif(message=='3'):
+            elif (message=='3'):
                 withdraw(float(input("请输入取款金额: ")))
 
-            elif(message=='4'):
+            elif (message=='4'):
                 lm = float (input ("贷款金额："))
                 lt = int (input ("贷款时长(年):"))
                 loan(lm,lt)
 
-            elif(message=='5'):
+            elif (message=='5'):
                 years=int(input ("预计时间(年):"))
                 print("%d年后预计资产: %.2f元" %(years,contingent_asset(years)))
                 sleep(3)
         
-            else:
+            else :
                 print("欢迎下次光临!")
                 sleep(3)
                 exit()
