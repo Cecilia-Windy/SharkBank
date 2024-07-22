@@ -12,7 +12,7 @@ int main()
 
     cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
 
-    cout << "SharkBank(Beta) V1.5.5 \nAll rights reserved (C) [SHARK] co.,ltd.\n";
+    cout << "SharkBank(Beta) V1.6.5 \nAll rights reserved (C) [SHARK] co.,ltd.\n";
 
     cout << endl << "<!> Only use [En letters] and [-] or It will error." << endl << "Enter Your Name : ";
     cin >> UserName;
