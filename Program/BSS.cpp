@@ -2,13 +2,13 @@
 #include <iostream>
 #include <Windows.h>
 
-long Bank_SSI::shares = 0;
-double Bank_SSI::share_val = 0.0;
-double Bank_SSI::total_val = 0.0;
+long long Bank_SS::shares = 0;
+double Bank_SS::share_val = 0.0;
+double Bank_SS::total_val = 0.0;
 
-Bank_SSI::Bank_SSI() { }
+Bank_SS::Bank_SS() { }
 
-Bank_SSI::Bank_SSI(const std::string& co = "Shark Inc.", long shares_ = 0)
+Bank_SS::Bank_SS(const std::string& co = "Shark Inc.", long long shares_ = 0)
 {
 	company = co;
 
@@ -26,13 +26,13 @@ Bank_SSI::Bank_SSI(const std::string& co = "Shark Inc.", long shares_ = 0)
 	set_tot();
 }
 
-Bank_SSI::~Bank_SSI()
+Bank_SS::~Bank_SS()
 {
 	std::cout << "BSSI : [Finish]" << std::endl << std::endl;
 	Sleep(1000);
 }
 
-void Bank_SSI::buy(long num)
+void Bank_SS::buy(long long num)
 {
 	using std::cout;
 	using std::endl;
@@ -44,11 +44,13 @@ void Bank_SSI::buy(long num)
 	}
 	else
 	{
-		bool IS_E = Bank_MSI::Money -= (num * share_val); 
-		if (IS_E) { cout << "Transaction is aborted" << endl << endl; }
+		if ((Bank_MS::Money - (num * share_val)) < 0) { cout << "Transaction is aborted" << endl << endl; }
 		else
 		{
 			shares += num;
+			Bank_MS::Money -= (num * share_val);
+			File_System::F_Write("Msys",Bank_MS::Money);
+			File_System::F_Write("Ssys",shares);
 			set_tot();
 			Sto_show();
 		}
@@ -57,7 +59,7 @@ void Bank_SSI::buy(long num)
 	Sleep(2000);
 }
 
-void Bank_SSI::sell(long num)
+void Bank_SS::sell(long long num)
 {
 	using std::endl;
 	using std::cout;
@@ -76,13 +78,15 @@ void Bank_SSI::sell(long num)
 	{
 		shares -= num;
 		set_tot();
+		Bank_MS::Money += (num * share_val);
+		File_System::F_Write("Msys",Bank_MS::Money);
+		File_System::F_Write("Ssys",shares);
 		Sto_show();
-		Bank_MSI::Money += (num * share_val);
 	}
 	Sleep(2000);
 }
 
-void Bank_SSI::Sto_show()
+void Bank_SS::Sto_show()
 {
 	using namespace std;
 	ios_base::fmtflags orig = cout.setf(ios_base::fixed, ios_base::floatfield);

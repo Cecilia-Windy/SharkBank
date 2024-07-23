@@ -17,9 +17,9 @@ int main()
     cout << endl << "<!> Only use [En letters] and [-] or It will error." << endl << "Enter Your Name : ";
     cin >> UserName;
 
-    static Bank_MSI M_user(0.0);
-    static Bank_SSI S_user("Shark Inc.", 0);
-    static Bank_DCSI DC_user("Shark Inc.", 0);
+    static Bank_MS M_user(0.0);
+    static Bank_SS S_user("Shark Inc.", 0);
+    static Bank_DCS DC_user("Shark Inc.", 0);
 
     static File_System File_Opr;
 
@@ -99,7 +99,7 @@ int main()
             while (true)
             {
                 int Options;
-                static long num_2 = 0;
+                static long long num_2 = 0;
 
                 cout << "Please Enter : \n"
                     << "1: Buy Shares\n"

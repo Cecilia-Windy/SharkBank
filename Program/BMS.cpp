@@ -17,28 +17,28 @@ double rannum(double x, double y)
 }
 
 
-double Bank_MSI::Money = 0.0;
-double Bank_MSI::Deposit_Int = rannum(1.55, 3.00);
-double Bank_MSI::Loan_Int = rannum(2.95, 4.55);
+double Bank_MS::Money = 0.0;
+double Bank_MS::Deposit_Int = rannum(1.55, 3.00);
+double Bank_MS::Loan_Int = rannum(2.95, 4.55);
 
 
-Bank_MSI::Bank_MSI(){ }
+Bank_MS::Bank_MS(){ }
 
-Bank_MSI::Bank_MSI(double Money_ = 0.0)
+Bank_MS::Bank_MS(double Money_ = 0.0)
 {
     Deposit_Int = rannum(1.55, 3.00);
     Loan_Int = rannum(2.95, 4.55);
     Money = Money_;
 }
 
-Bank_MSI::~Bank_MSI()
+Bank_MS::~Bank_MS()
 {
     std::cout << "BMSI : [Finish]\n";
     Sleep(1000);
 }
 
 
-void Bank_MSI::Savings(double sav)
+void Bank_MS::Savings(double sav)
 {
     if (sav < 0) {
         std::cout << "Error : The deposit amount is less than 0 CNY." << std::endl << std::endl;
@@ -52,7 +52,7 @@ void Bank_MSI::Savings(double sav)
     Sleep(2000);
 }
 
-bool Bank_MSI::Withdrawal(double wit)
+bool Bank_MS::Withdrawal(double wit)
 {
     using std::cout;
     if (wit < 0) {
@@ -61,7 +61,7 @@ bool Bank_MSI::Withdrawal(double wit)
 
         return true;
     }
-    else if (wit > Bank_MSI::Money)
+    else if (wit > Bank_MS::Money)
     {
         cout << "Error : The withdrawal amount is greater than the balance." << std::endl << std::endl;
         Sleep(2000);
@@ -70,6 +70,7 @@ bool Bank_MSI::Withdrawal(double wit)
     }
     else {
         Money -= wit;
+        File_System::F_Write("Msys",Money);
         std::cout << std::setprecision(2) << "Bank account balance : " << Money << " CNY." << std::endl << std::endl;
         Sleep(2000);
 
@@ -77,7 +78,7 @@ bool Bank_MSI::Withdrawal(double wit)
     }
 }
 
-void Bank_MSI::Estimate_Loan(double loan_money, int loan_time) const
+void Bank_MS::Estimate_Loan(double loan_money, int loan_time) const
 {
     if (loan_time <= 0)
     {
@@ -94,7 +95,7 @@ void Bank_MSI::Estimate_Loan(double loan_money, int loan_time) const
     Sleep(2000);
 }
 
-void Bank_MSI::Estimate_asset(int years) const
+void Bank_MS::Estimate_asset(int years) const
 {
     if (years <= 0)
     {
@@ -108,7 +109,7 @@ void Bank_MSI::Estimate_asset(int years) const
     Sleep(2000);
 }
 
-void Bank_MSI::show() const
+void Bank_MS::show() const
 {
     using namespace std;
     ios_base::fmtflags orig = cout.setf(ios_base::fixed, ios_base::floatfield);
@@ -122,8 +123,8 @@ void Bank_MSI::show() const
     cout << "Today's lending rate : " << Loan_Int << endl
         << "Today's deposit rates : " << Deposit_Int << endl << endl;
 
-    Bank_SSI::Sto_show();
-    Bank_DCSI::DC_show();
+    Bank_SS::Sto_show();
+    Bank_DCS::DC_show();
 
     cout.setf(orig, ios_base::floatfield);
     cout.precision(prec);
