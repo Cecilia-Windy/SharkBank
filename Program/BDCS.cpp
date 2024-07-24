@@ -14,9 +14,12 @@ Bank_DCS::Bank_DCS(std::string company_ = "Shark Inc.", double DC_Money_ = 0.0)
 	using namespace std;
 	ios_base::fmtflags orig = cout.setf(ios_base::fixed, ios_base::floatfield);
 
+	double Add_money = rannum(10.00, 35.00);
+
 	DC_Money = DC_Money_;
 	company = company_;
 	DC_Money += Add_money;
+	File_System::F_Write("DCsys", DC_Money);
 	cout << setprecision(2) << "\n[Dream Card]" << "\a Credit " << Add_money << " CNY to Your Dream Card account." << endl;
 }
 

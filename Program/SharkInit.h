@@ -4,7 +4,6 @@
 
 double rannum(double, double);
 
-static double Add_money = rannum(10.00, 35.00);
 static std::string UserName = "Temp";
 
 class File_System;
